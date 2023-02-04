@@ -1,0 +1,113 @@
+.container {
+    height: 60%;
+    min-height: 60vh;
+    align-self: center;
+    align-items: center;
+    display: flex;
+    margin: auto;
+    width: 100%;
+   }
+   .innerBox {
+     min-width: 480px;
+     height: fit-content;
+     width: fit-content;
+     border: 0.8px solid black;
+     display: flex;
+     flex-direction: column;
+     gap: 30px;
+   }
+   .heading {
+     font-size: 25px;
+     font-weight: 700;
+     align-items: center;
+     align-self: center;
+   }
+   .input {
+       width: 430px;
+       margin: auto;
+       /* outline: none; */
+       /* padding: 10px 15px; */
+   }
+   
+   .footer {
+     width: 420px;
+     align-self: center;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+   }
+   
+   .gbtn {
+     width: 400px;
+     display: flex;
+     align-items: center;
+     align-self: center;
+     flex-direction: column;
+   }
+   
+   .footer .error {
+     font-weight: bold;
+     font-size: 0.875rem;
+     color: #ff3300;
+     text-align: center;
+   }
+   
+   .footer button {
+     outline: none;
+     border: none;
+     background-color: #370eca;
+     color: #fff;
+     border-radius: 5px;
+     
+     font-weight: bold;
+     font-size: 1.4rem;
+     padding: 10px 16px;
+     width: 100%;
+     transition: 100ms;
+     cursor: pointer;
+   }
+   
+   .google{
+     background-color: #df4930;
+   }
+   .facebook{
+     background-color: #507cc0;
+   }
+   .github{
+     background-color: black;
+   }
+   
+   .loginButton{
+     width: 370px;
+     padding: 15px 25px;
+     border-radius: 5px;
+     color: white;
+     display: flex;
+     align-items: center;
+     font-weight: bold;
+     margin-bottom: 20px;
+     cursor: pointer;
+   }
+   
+   .left{
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+   }
+   
+  .navigationLink {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .linkNav {
+    font-size: 15;
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 10px;
+  }
+  

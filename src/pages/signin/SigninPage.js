@@ -1,5 +1,6 @@
 import React from 'react'
 import GoogleButton from 'react-google-button';
+import { Link } from 'react-router-dom';
 import './SignIn.css';
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
@@ -20,6 +21,9 @@ const SigninPage = () => {
          </div>
          <div className='footer'>
           <button>Login</button>
+         </div>
+         <div className='navigationLink'>
+            <h3>Already Have an Account</h3> <Link to="/signup" className='linkNav' >Sign In</Link>
          </div>
          <div style={{ display: "flex", alignItems: "center", marginLeft: "20px", marginRight: "20px" }}>
     <div style={{ flex: 1, backgroundColor: "#6F38C5", height: "1px" }} />
