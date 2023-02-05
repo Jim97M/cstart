@@ -6,9 +6,15 @@ import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
 import Github from "../../assets/github.png";
 
-import InputControl from '../../components/inputs/InputControl';
+
 
 const SigninPage = () => {
+
+  const google = () => {
+    window.open("http://localhost:5000/api/v1/auth/google", "_self");
+  };
+
+
   return (
     <div className='container'>
       <div className='innerBox'>
@@ -26,24 +32,20 @@ const SigninPage = () => {
             <h3>Already Have an Account</h3> <Link to="/signup" className='linkNav' >Sign In</Link>
          </div>
          <div style={{ display: "flex", alignItems: "center", marginLeft: "20px", marginRight: "20px" }}>
-    <div style={{ flex: 1, backgroundColor: "#6F38C5", height: "1px" }} />
+             <div style={{ flex: 1, backgroundColor: "#6F38C5", height: "1px" }} />
  
-    <p style={{ margin: "0 10px" }}>OR</p>
+            <p style={{ margin: "0 10px" }}>OR</p>
  
-    <div style={{ flex: 1, backgroundColor: "#6F38C5", height: "1px" }} />
-</div>
+             <div style={{ flex: 1, backgroundColor: "#6F38C5", height: "1px" }} />
+          </div>
          <div className="left">
-          <div className="loginButton google">
+          <div className="loginButton google" onClick={google}>
             <img src={Google} alt="" className="icon" />
             Google
           </div>
           <div className="loginButton facebook">
             <img src={Facebook} alt="" className="icon" />
             Facebook
-          </div>
-          <div className="loginButton github">
-            <img src={Github} alt="" className="icon" />
-            Github
           </div>
         </div>
          </div>
