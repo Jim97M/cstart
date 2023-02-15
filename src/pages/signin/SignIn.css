@@ -5,7 +5,7 @@ section {
 }
 
 section .form_data{
-  max-width: 550px;
+  max-width: 500px;
   margin: 25px auto;
   padding: 35px 10px;
   box-shadow: 0 0 15px -10px #2d3748;
@@ -134,4 +134,27 @@ form .btn:hover{
   text-decoration: none;
   color:#718096 ;
   border-bottom: 2px solid #8694a8;
+}
+
+.google{
+  background-color: #df4930;
+}
+.facebook{
+  background-color: #507cc0;
+}
+.github{
+  background-color: black;
+  width: 100%;
+}
+
+.loginButton{
+  width: 500px;
+  padding: 15px 25px;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  cursor: pointer;
 }

@@ -61,10 +61,7 @@ const SigninPage = () => {
   const google = () => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
-
-    const login = () => {
-       
-    }
+ 
 
   return (
     <section>
@@ -89,7 +86,7 @@ const SigninPage = () => {
                         </div>
 
                         <button className='btn'>Login</button>
-                        <p>Don't have an Account? <NavLink to="/register">Sign Up</NavLink> </p>
+                        <p>Don't have an Account? <NavLink to="/signup">Sign Up</NavLink> </p>
           </form>
          <div className="left">
           <div className="loginButton google" onClick={google}>
