@@ -11,10 +11,12 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
 import { ValidatorForm} from 'react-material-ui-form-validator';
 import OtpInput from 'react-otp-input';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import './verifyOtp.css';
 
 const VerityOtpPage = () => {
-    const paperStyle={padding :20,height:'70vh',width:280, margin:"60px auto"}
+    const paperStyle={padding :20,height:'43vh',width:380, margin:"60px auto", marginTop: "120px"}
     const avatarStyle={backgroundColor:'#6d7f9f'}   //  #3370bd
     const btnstyle={marginTop:'28px ',backgroundColor:'#6d7f9f'}
      
@@ -37,7 +39,11 @@ const VerityOtpPage = () => {
                 </Typography>
               </Box>
             </Grid>
-            <ValidatorForm>
+            <PhoneInput
+            country={'us'}
+            containerStyle={{marginTop: "20px", marginLeft: "34px"}}
+            />
+            <ValidatorForm style={{marginTop: "20px"}}>
               <OtpInput
                 numInputs={6}
                 inputStyle="inputStyle"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import "./SignUp.css";
@@ -11,6 +12,7 @@ import Github from "../../assets/github.png";
 
 
 const SignUpPage = () => {
+    const navigate = useNavigate();
 
     const [passShow, setPassShow] = useState(false);
     const [cpassShow, setCPassShow] = useState(false);
@@ -87,9 +89,12 @@ const SignUpPage = () => {
                  email, password, confirm_password
            }).then(res => {
             if (res.status == 200) {
-                toast.success("Email Sent Successfully 😃! Please Confirm", {
+                toast.success("Please Verify Phone Number 😃! ", {
                     position: "top-center"
                 });
+                
+                navigate('/verify', {replace: true})
+
                 setInpval({ ...inpval, email: "", password: "", confirm_password: "" });
             }
         })
