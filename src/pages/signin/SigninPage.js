@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'; 
 import './SignIn.css';
 import Google from "../../assets/google.png";
@@ -35,33 +36,63 @@ const SigninPage = () => {
   const [formErrors, setFormErrors] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  }
-
-  const validate = (values) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-    if(!values.email){
-      errors.email = "Email is Required";
-    } else if (!regex.test(values.email)) {
-      errors.email = "This email is invalid"
-    }
-    if(!values.password) {
-      errors.password("Password is required");
-    } else if(values.passoword.length < 4) {
-      errors.password = "Password is Short"
-    } else if (values.password.length > 15){
-      errors.password = "Password Cannot exceed 15 Characters"
-    }
-    return errors;
-  }
-
   const google = () => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
  
+  const addUserdata = async (e) => {
+    e.preventDefault();
+
+    const { email, password, confirm_password } = inpval;
+
+   if (email === "") {
+        toast.error("email is required!", {
+            position: "top-center"
+        });
+    } else if (!email.includes("@")) {
+        toast.warning("includes @ in your email!", {
+            position: "top-center"
+        });
+    } else if (password === "") {
+        toast.error("password is required!", {
+            position: "top-center"
+        });
+    } else if (password.length < 6) {
+        toast.error("password must be 6 char!", {
+            position: "top-center"
+        });
+    } else if (confirm_password === "") {
+        toast.error("cpassword is required!", {
+            position: "top-center"
+        });
+    } else {
+        // console.log("user registration succesfully done");
+        
+       const { email, password} = inpval;
+       axios.post("http://localhost:5000/api/v1/auth/signin", {
+             email, password,
+       }).then(res => {
+        if (res.status === 401)
+        {
+          toast.error("Wrong Password 😃! ", {
+            position: "top-center"
+        });
+        
+        }
+        else if(res.status === 200)
+        {
+            toast.success("Welcome 😃! ", {
+                position: "top-center"
+            });
+            
+            navigate('/verify', {replace: true})
+
+            setInpval({ ...inpval, email: "", password: "", confirm_password: "" });
+        }
+    })
+    }
+}
+
 
   return (
     <section>
@@ -73,7 +104,7 @@ const SigninPage = () => {
        
       <div className="form_input">
                             <label htmlFor="email">Email</label>
-                            <input type="email" value={inpval.email} onChange={setVal} name="email" id="email" placeholder='Enter Your Email Address' />
+                            <input type="email" onChange={setVal} value={inpval.email} name="email" id="email" placeholder='Enter Your Email Address' />
                         </div>
                         <div className="form_input">
                             <label htmlFor="password">Password</label>
@@ -85,7 +116,7 @@ const SigninPage = () => {
                             </div>
                         </div>
 
-                        <button className='btn'>Login</button>
+                        <button className='btn' onClick={addUserdata}>Login</button>
                         <p>Don't have an Account? <NavLink to="/signup">Sign Up</NavLink> </p>
           </form>
          <div className="left">
@@ -98,6 +129,7 @@ const SigninPage = () => {
             Facebook
           </div>
         </div>
+        <ToastContainer />
       </div>
     </section>
   )
