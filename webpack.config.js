@@ -2,7 +2,6 @@ const path = require('path');
 const miniCssExtraPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-
 module.exports = {
     output: {
         path: path.join(__dirname, "/dist"),
@@ -13,7 +12,16 @@ module.exports = {
         liveReload: true,
         historyApiFallback: true,
       },
+      resolve: {
+        modules: [
+          path.join(__dirname, 'src'),
+          'node_modules'
+        ],
+        extensions: ['.js', '.jsx', '.json']
+      },
+
       module: {
+  
         rules: [
           {
             test: /\.(js|jsx)$/,
@@ -27,6 +35,17 @@ module.exports = {
               use: ["style-loader", "css-loader"],
             },
             {
+              test: /\.s[ac]ss$/i,
+              use: [
+                // Creates `style` nodes from JS strings
+                "style-loader",
+                // Translates CSS into CommonJS
+                "css-loader",
+                // Compiles Sass to CSS
+                "sass-loader",
+              ],
+            },
+            {
               test: /\.(png|jpe?g|gif)$/i,
               use: [
                 {
@@ -34,19 +53,19 @@ module.exports = {
                 },
               ],
             },
-      
-        //   {
-        //     test: /\.svg$/,
-        //     use: [
-        //       {
-        //         loader: 'svg-url-loader',
-        //         options: {
-        //           limit: 10000,
-        //         },
-        //       },
-        //     ],
-        //   },
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: 'svg-url-loader',
+                options: {
+                  limit: 10000,
+                },
+              },
+            ],
+          },
         ],
+        
       },
       plugins: [
         new Dotenv(),

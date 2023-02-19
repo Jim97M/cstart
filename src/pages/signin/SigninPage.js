@@ -85,7 +85,7 @@ const SigninPage = () => {
                 position: "top-center"
             });
             
-            navigate('/verify', {replace: true})
+            navigate('/', {replace: true})
 
             setInpval({ ...inpval, email: "", password: "", confirm_password: "" });
         }
