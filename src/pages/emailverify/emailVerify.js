@@ -29,7 +29,7 @@ const EmailVerify = () => {
         <div className="container">
                   <img src={confirmImage} alt="success_img" />
                   <h1>Email verified successfully</h1>
-                  <Link to="/login">Login</Link>        
+                  <Link to="/signin">SignIn</Link>        
         </div>
      ) : (
                   <h1>Invalid link</h1>

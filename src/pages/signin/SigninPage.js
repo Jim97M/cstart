@@ -1,15 +1,35 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import React, { useState,useEffect, useRef,  useContext, createContext} from 'react'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'; 
 import './SignIn.css';
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
-import Github from "../../assets/github.png";
 
 
+const AuthContext = createContext({});
+
+const AuthProvider = ({children}) => {
+  const [auth, setAuth] = useState({});
+  return (
+    <AuthContext.Provider value={{auth, setAuth}}>
+      {children}
+    </AuthContext.Provider>
+  )
+}
 
 const SigninPage = () => {
+  
+  const {setAuth} = useContext(AuthProvider);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const from = location?.state?.from?.pathname || "/";
 
   const initialValues = { email: "", password: ""};
 
@@ -19,6 +39,9 @@ const SigninPage = () => {
       email: "",
       password: "",
   });
+
+  const userRef = useRef();
+
 
   const setVal = (e) => {
     // console.log(e.target.value);
@@ -32,10 +55,6 @@ const SigninPage = () => {
     })
 };
 
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState(false);
-  const [isSubmit, setIsSubmit] = useState(false);
-
   const google = () => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
@@ -43,56 +62,48 @@ const SigninPage = () => {
   const addUserdata = async (e) => {
     e.preventDefault();
 
-    const { email, password, confirm_password } = inpval;
+    // const { email, password, confirm_password } = inpval;
 
-   if (email === "") {
-        toast.error("email is required!", {
-            position: "top-center"
-        });
-    } else if (!email.includes("@")) {
-        toast.warning("includes @ in your email!", {
-            position: "top-center"
-        });
-    } else if (password === "") {
-        toast.error("password is required!", {
-            position: "top-center"
-        });
-    } else if (password.length < 6) {
-        toast.error("password must be 6 char!", {
-            position: "top-center"
-        });
-    } else if (confirm_password === "") {
-        toast.error("cpassword is required!", {
-            position: "top-center"
-        });
-    } else {
+  //  if (email === "") {
+  //       toast.error("email is required!", {
+  //           position: "top-center"
+  //       });
+  //   } else if (!email.includes("@")) {
+  //       toast.warning("includes @ in your email!", {
+  //           position: "top-center"
+  //       });
+  //   } else if (password === "") {
+  //       toast.error("password is required!", {
+  //           position: "top-center"
+  //       });
+  //   } else if (password.length < 6) {
+  //       toast.error("password must be 6 char!", {
+  //           position: "top-center"
+  //       });
+  //   } else {
         // console.log("user registration succesfully done");
         
        const { email, password} = inpval;
-       axios.post("http://localhost:5000/api/v1/auth/signin", {
-             email, password,
-       }).then(res => {
-        if (res.status === 401)
-        {
-          toast.error("Wrong Password 😃! ", {
-            position: "top-center"
-        });
-        
-        }
-        else if(res.status === 200)
-        {
-            toast.success("Welcome 😃! ", {
-                position: "top-center"
-            });
-            
-            navigate('/', {replace: true})
-
-            setInpval({ ...inpval, email: "", password: "", confirm_password: "" });
-        }
-    })
-    }
+      const response = axios.post("http://localhost:5000/api/v1/auth/signin", 
+          JSON.stringify({email,password}),
+          {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true
+          }
+    );
+    
+    console.log(JSON.stringify(response?.data));
+    //console.log(JSON.stringify(response));
+    const accessToken = response?.data?.accessToken;
+    const roleId = response?.data?.roleId;
+    setAuth({ email, password, roleId, accessToken });
+    navigate(from, { replace: true });
+    // }
 }
 
+useEffect(() => {
+  userRef.current.focus();
+}, []);
 
   return (
     <section>
@@ -104,7 +115,7 @@ const SigninPage = () => {
        
       <div className="form_input">
                             <label htmlFor="email">Email</label>
-                            <input type="email" onChange={setVal} value={inpval.email} name="email" id="email" placeholder='Enter Your Email Address' />
+                            <input type="email" onChange={setVal} ref={userRef} value={inpval.email} name="email" id="email" placeholder='Enter Your Email Address' />
                         </div>
                         <div className="form_input">
                             <label htmlFor="password">Password</label>
@@ -115,7 +126,6 @@ const SigninPage = () => {
                                 </div>
                             </div>
                         </div>
-
                         <button className='btn' onClick={addUserdata}>Login</button>
                         <p>Don't have an Account? <NavLink to="/signup">Sign Up</NavLink> </p>
           </form>

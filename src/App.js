@@ -3,24 +3,38 @@ window.React = React
 
 import SigninPage from './pages/signin/SigninPage';
 import SignUpPage from './pages/signup/SignUpPage';
-import VerityOtpPage from './pages/auth/VerityOtpPage';
-import List from "./pages";
+import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
-import New from "./pages/new/New";
+import Home from "./pages/home/Home";
+import LayoutPage from './pages/layout/LayoutPage';
 import { Routes, Route } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
+import RequiredAuth from './pages/authorization_pages/RequiredAuth';
+import VerifyOtpPage from './pages/auth/VerifyOtpPage';
+import AdminPage from './pages/admin/AdminPage';
+
+const ROLES = {
+  'student': 1,
+  'faculty': 2,
+  'admin': 3,
+}
+
 const App = () => {
 
   return (
     <Routes>
-    <Route path="/">
-            <Route index element={<Home />} />
-      <Route path='/signin' element={<SigninPage />} />
-      <Route path='/signup' element={<SignUpPage />} />
-      <Route path='/verify' element={<VerityOtpPage />} />
-            <Route path="users">
+    <Route path="/" element={<LayoutPage />}>
+      <Route path='signin' element={<SigninPage />} />
+      <Route path='signup' element={<SignUpPage />} />
+     <Route path="/home" element={<Home />} />
+      
+      {/* Protect This Route To Authenticated Users */}
+   <Route element={<RequiredAuth allowedRoles={[ROLES.student]} />}>
+     <Route path="/home" element={<Home />} />
+     <Route path='verify' element={<VerifyOtpPage />} />
+     <Route path="users">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
               <Route
@@ -36,8 +50,13 @@ const App = () => {
                 element={<New inputs={productInputs} title="Add New Product" />}
               />
             </Route>
-          </Route>
+   </Route>
+   <Route element={<RequiredAuth allowedRoles={[ROLES.admin]} />}>
+          <Route path="admin" element={<AdminPage />} />
+        </Route>
+ </Route>
     </Routes>
+
   )
 }
 

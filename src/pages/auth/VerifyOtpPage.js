@@ -18,7 +18,7 @@ import './verifyOtp.css';
 
 const BaseURL = process.env.BASE_URL
 
-const VerityOtpPage = () => {
+const VerifyOtpPage = () => {
     const navigate = useNavigate();
     const [phoneInserted, setPhoneInserted] = useState(false);
     const [phone, setphone] = useState('');
@@ -135,4 +135,4 @@ const VerityOtpPage = () => {
   )
 }
 
-export default VerityOtpPage;
+export default VerifyOtpPage;
