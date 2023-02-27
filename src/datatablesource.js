@@ -121,3 +121,69 @@ export const userRows = [
     age: 65,
   },
 ];
+
+
+//Temporary Video Data
+
+export const videoData = [
+  {
+    id: 1,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 2,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 3,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file1.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 4,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file2.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 5,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file3.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 6,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file2.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 7,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file1.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 8,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file3.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 9,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file.mp4",
+    comment: "Good Tutorial",
+  },
+  {
+    id: 10,
+    description: "This Is A new Tutorial. The way MetaData Should be Handled in Node JS and React",
+    video: "../src/assets/file.mp4",
+    comment: "Good Tutorial",
+  }
+]

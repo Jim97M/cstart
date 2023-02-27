@@ -64,6 +64,15 @@ module.exports = {
               },
             ],
           },
+          {
+            test: /\.mp4$/,
+            use: [
+              {
+                loader: 'file-loader',
+              }
+            ]
+          }
+          
         ],
         
       },

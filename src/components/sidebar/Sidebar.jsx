@@ -42,7 +42,7 @@ const Sidebar = () => {
           <Link to="/modules" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Academics</span>
+              <span>Modules</span>
             </li>
           </Link>
           
