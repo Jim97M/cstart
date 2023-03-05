@@ -128,6 +128,7 @@ useEffect(() => {
                         </div>
                         <button className='btn' onClick={addUserdata}>Login</button>
                         <p>Don't have an Account? <NavLink to="/signup">Sign Up</NavLink> </p>
+                        <p style={{color: "black", fontWeight: 'bold'}}>Forgot Password? <NavLink to="/forgotpassword">Click Here</NavLink> </p> 
           </form>
          <div className="left">
           <div className="loginButton google" onClick={google}>
