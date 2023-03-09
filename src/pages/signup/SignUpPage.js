@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { NavLink } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -9,6 +11,7 @@ import "./SignUp.css";
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
 import Github from "../../assets/github.png";
+import Logo from "../../assets/logo.png";
 
 
 const SignUpPage = () => {
@@ -16,6 +19,7 @@ const SignUpPage = () => {
 
     const [passShow, setPassShow] = useState(false);
     const [cpassShow, setCPassShow] = useState(false);
+    const [phone, setphone] = useState('');
 
     const [inpval, setInpval] = useState({
         email: "",
@@ -85,7 +89,7 @@ const SignUpPage = () => {
             // console.log("user registration succesfully done");
             
            const { email, password, confirm_password} = inpval;
-           axios.post("http://localhost:5000/api/v1/auth/signup", {
+           axios.post("http://192.168.0.37:5000/api/v1/auth/signup", {
                  email, password, confirm_password
            }).then(res => {
             if (res.status == 200) {
@@ -104,13 +108,27 @@ const SignUpPage = () => {
     return (
         <>
             <section>
-                <div className="form_data">
+                <div className="form">
+                    <div>
                     <div className="form_heading">
                         <h1>Sign Up</h1>
                     </div>
-
                     <form>
+                        <div>
+                            <label htmlFor="names">Full Names</label>
+                            <input type="text" onChange={setVal} value={inpval.email} name="email" id="email" placeholder='Enter Your Full Names' />
+                        </div>
                         <div className="form_input">
+                            <label htmlFor="email">Phone Number</label>
+                            <PhoneInput
+                              country={'us'}
+                               value={phone}
+                               onChange={phone => setphone(phone)}
+                               searchStyle={{width: "40%"}}  
+                               inputStyle={{width: "98%"}}
+                             />
+                        </div>
+                        <div className="form_input" style={{marginTop: "10px"}}>
                             <label htmlFor="email">Email</label>
                             <input type="email" onChange={setVal} value={inpval.email} name="email" id="email" placeholder='Enter Your Email Address' />
                         </div>
@@ -137,7 +155,10 @@ const SignUpPage = () => {
                         <button className='btn' onClick={addUserdata}>Sign Up</button>
                         <p>Already have an account? <NavLink to="/">Log In</NavLink></p>
                     </form>
-                    <div className="left">
+                    </div>
+                    <div className="left" style={{backgroundColor: "lightgray", height: "80vh", marginTop: -35, marginBottom: -37, marginRight: -10}}>
+                        
+                       <img src={Logo} alt="" className="ic" style={{width: "20vw", borderRadius: "50%"}} />
                        <div className="loginButton google" onClick={google}>
                          <img src={Google} alt="" className="icon" />
                          Google

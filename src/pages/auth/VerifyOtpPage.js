@@ -28,7 +28,7 @@ const VerifyOtpPage = () => {
     const [loading, setLoading] = useState(false);
     const paperStyle={padding :20,height:'45vh',width:380, margin:"60px auto", marginTop: "120px"}
     const avatarStyle={backgroundColor:'#6d7f9f'}   //  #3370bd
-    const btnstyle={marginTop:'28px ',backgroundColor:'#6d7f9f'}
+    const btnstyle={marginTop:'28px ',backgroundColor:'#1a365d'}
      
     const [count, setCount] = useState(59);
     useEffect(() => {

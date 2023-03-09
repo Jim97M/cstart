@@ -5,24 +5,25 @@ import axios from 'axios';
 import './SignIn.css';
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
+import logoImage from "../../assets/maxresdefault.jpg";
 
 
-const AuthContext = createContext({});
+// const AuthContext = createContext({});
 
-const AuthProvider = ({children}) => {
-  const [auth, setAuth] = useState({});
-  return (
-    <AuthContext.Provider value={{auth, setAuth}}>
-      {children}
-    </AuthContext.Provider>
-  )
-}
+// const AuthProvider = ({children}) => {
+//   const [auth, setAuth] = useState({});
+//   return (
+//     <AuthContext.Provider value={{auth, setAuth}}>
+//       {children}
+//     </AuthContext.Provider>
+//   )
+// }
 
 const SigninPage = () => {
   
-  const {setAuth} = useContext(AuthProvider);
+  // const {setAuth} = useContext(AuthProvider);
 
-  const navigate = useNavigate();
+  const history = useNavigate();
   const location = useLocation();
 
   const [formValues, setFormValues] = useState(initialValues);
@@ -84,26 +85,26 @@ const SigninPage = () => {
         // console.log("user registration succesfully done");
         
        const { email, password} = inpval;
-      const response = axios.post("http://localhost:5000/api/v1/auth/signin", 
-          JSON.stringify({email,password}),
-          {
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true
-          }
-    );
-    
-    console.log(JSON.stringify(response?.data));
-    //console.log(JSON.stringify(response));
-    const accessToken = response?.data?.accessToken;
-    const roleId = response?.data?.roleId;
-    setAuth({ email, password, roleId, accessToken });
-    navigate(from, { replace: true });
-    // }
-}
-
-useEffect(() => {
-  userRef.current.focus();
-}, []);
+       axios.post("http://192.168.0.37:5000/api/v1/auth/signin", 
+          {email,password}).then(res => {
+            console.log(JSON.stringify(res.data))
+            //console.log(JSON.stringify(response));
+            
+            if(res.status === 200){
+              localStorage.setItem("userToken", JSON.stringify(res.data));
+              history("/home");
+              setInpval({...inpval,email:"",password:""});
+            } else {
+              toast.error("Invalid Credentials", {
+                position: "top-center"
+               });
+        }
+     
+      });
+    }
+     useEffect(() => {
+      addUserdata();
+      }, []);
 
   return (
     <section>
@@ -114,8 +115,10 @@ useEffect(() => {
       <form>
        
       <div className="form_input">
+                       <div className='one'>
                             <label htmlFor="email">Email</label>
-                            <input type="email" onChange={setVal} ref={userRef} value={inpval.email} name="email" id="email" placeholder='Enter Your Email Address' />
+                            <input style={{marginRight: 30, width: '96%'}} className='email' type="email" onChange={setVal} ref={userRef} value={inpval.email} name="email" id="email" placeholder='Enter Your Email Address' />
+                            </div>
                         </div>
                         <div className="form_input">
                             <label htmlFor="password">Password</label>
@@ -126,11 +129,12 @@ useEffect(() => {
                                 </div>
                             </div>
                         </div>
+                        <p style={{color: "black", fontWeight: 'bold', marginLeft: '16vw'}}>Forgot Password? <NavLink to="/forgotpassword">Click Here</NavLink> </p> 
                         <button className='btn' onClick={addUserdata}>Login</button>
-                        <p>Don't have an Account? <NavLink to="/signup">Sign Up</NavLink> </p>
-                        <p style={{color: "black", fontWeight: 'bold'}}>Forgot Password? <NavLink to="/forgotpassword">Click Here</NavLink> </p> 
+                        <p style={{color: "black", fontWeight: 'bold'}}>Don't have an Account? <NavLink to="/signup">Sign Up</NavLink> </p>
           </form>
          <div className="left">
+          <img src={logoImage}/>
           <div className="loginButton google" onClick={google}>
             <img src={Google} alt="" className="icon" />
             Google

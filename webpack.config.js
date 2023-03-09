@@ -53,6 +53,14 @@ module.exports = {
                 },
               ],
             },
+            {
+              test: /\.jpg$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                },
+              ],
+            },
           {
             test: /\.svg$/,
             use: [

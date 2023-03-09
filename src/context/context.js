@@ -2,7 +2,7 @@ import React, {createContext, useState} from 'react';
 
 export const LoginContext = createContext("");
 
-const context = ({children}) => {
+const Context = ({children}) => {
     const [logindata, setLoginData] = useState("");
   return (
     <>
@@ -13,4 +13,4 @@ const context = ({children}) => {
   )
 }
 
-export default context
+export default Context;

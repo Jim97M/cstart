@@ -1,4 +1,5 @@
 import "./sidebar.scss";
+import React, {useContext} from 'react'
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
@@ -13,15 +14,17 @@ import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+
+  const token =JSON.parse(localStorage.getItem("userToken"));
+  console.log("Your token is", token);
   return (
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Student Name</span>
+          <span className="logo">{token.email}</span>
         </Link>
       </div>
       <hr />

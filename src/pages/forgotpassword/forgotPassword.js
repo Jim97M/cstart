@@ -26,7 +26,7 @@ const ForgotPassword = () => {
                     {message ? <p style={{color: "green", fontWeight: "bold"}}>Password Succesfully Update</p> : ""}
                     <div className='form_input'>
                         <label htmlFor='password'> New Password </label>
-                        <input type='password' value={password} name='password' id="password" placeholder='Enter Your new Password' />
+                        <input style={{width: '96%'}} type='password' value={password} name='password' id="password" placeholder='Enter Your new Password' />
                     </div>
                     <button className='btn'>Send</button>
                   </form>
