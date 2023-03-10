@@ -16,15 +16,29 @@ import Logo from "../../assets/logo.png";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
-
+    const [selectedImage, setSelectedImage] = useState();
     const [passShow, setPassShow] = useState(false);
+    const [phone, setPhone] = useState("");
     const [cpassShow, setCPassShow] = useState(false);
-    const [phone, setphone] = useState('');
 
+  // This function will be triggered when the file field change
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+  };
+
+  // This function will be triggered when the "Remove This Image" button is clicked
+  const removeSelectedImage = () => {
+    setSelectedImage();
+  };
     const [inpval, setInpval] = useState({
         email: "",
+        fullaname: "",
+        phone_number: "",
         password: "",
-        confirm_password: ""
+        confirm_password: "",
+        phone_number: ""
     });
 
     const google = () => {
@@ -130,8 +144,30 @@ const SignUpPage = () => {
                         </div>
                         <div className="form_input" style={{marginTop: "10px"}}>
                             <label htmlFor="email">Email</label>
-                            <input type="email" onChange={setVal} value={inpval.email} name="email" id="email" placeholder='Enter Your Email Address' />
+                            <input type="email" onChange={setVal} style={{marginRight: 60}} value={inpval.email} name="email" id="email" placeholder='Enter Your Email Address' />
                         </div>
+                        <div className='container'>
+        <input
+          accept="image/*"
+          type="file"
+          className='img_input'
+          placeholder='Select Image'
+          onChange={imageChange}
+        />
+
+        {selectedImage && (
+          <div className='preview'>
+            <img
+              src={URL.createObjectURL(selectedImage)}
+              className='image'
+              alt="Thumb"
+            />
+            <button onClick={removeSelectedImage} className='delete'>
+              Remove This Image
+            </button>
+          </div>
+        )}
+      </div>
                         <div className="form_input">
                             <label htmlFor="password">Password</label>
                             <div className="two">
@@ -156,7 +192,7 @@ const SignUpPage = () => {
                         <p>Already have an account? <NavLink to="/">Log In</NavLink></p>
                     </form>
                     </div>
-                    <div className="left" style={{backgroundColor: "lightgray", height: "80vh", marginTop: -35, marginBottom: -37, marginRight: -10}}>
+                    <div className="left" style={{backgroundColor: "lightgray", height: "84vh", marginTop: -35, marginBottom: -47, marginRight: -10}}>
                         
                        <img src={Logo} alt="" className="ic" style={{width: "20vw", borderRadius: "50%"}} />
                        <div className="loginButton google" onClick={google}>
