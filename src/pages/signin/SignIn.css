@@ -1,19 +1,20 @@
-section {
+
+section{
   width: 100%;
   padding: 10px;
-  min-height: calc(100vh - 80px);
+  min-height:calc(100vh - 80px);
 }
 
-section .form_data{
-  max-width: 500px;
+section .form{
+  width: 60%;
   margin: 25px auto;
   padding: 35px 10px;
   box-shadow: 0 0 15px -10px #2d3748;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  justify-content: space-evenly;
+  flex-direction: 'row';
+} 
 
 .form_heading{
   display: flex;
@@ -21,84 +22,56 @@ section .form_data{
   align-items: center;
 }
 
-.form_data h1{
+.form h1{
   font-size: 34px;
   color: #2a4365;
 }
 
-.form_data p{
+.form p{
   color: #718096;
   font-size: 15px;
   margin-top:9px;
 }
 
-.form_heading{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form_data h1{
-  font-size: 34px;
-  color: #2a4365;
-}
-
-.form_data p{
-  color: #718096;
-  font-size: 15px;
-  margin-top:9px;
-}
-
-.form_data form{
+.form form{
   margin-top: 45px;
-  width: 100%;
+  width: 80%;
   padding: 10px 50px;
 }
 
-.form_data form .form_input input{
-  width: 95%;
+.form form input{
+  width: 30vw;
   padding: 11px;
   border: 1px solid #d4d0d0;
   border-radius: 5px;
   outline: none;
   margin-bottom: 14px;
   margin-top: 9px;
-  font-size: 14px;
-  
+  font-size: 14px;    
 }
 
-.form_data form .form_input label{
+.form form .form label{
   font-weight: 600;
   font-size: 15px;
 }
 
-.form_input .two{
+.form .two{
   display: flex;
   align-items: center;
   position: relative;
 }
 
-.form_input .one{
-  display: flex;
-  flex-direction: column;
-}
-
-.email {
-  margin-right: 170px;
-}
-
-.form_data form .form_input input:focus{
+.form form .form input:focus{
   border:2px solid rgba(66, 153, 225,0.6);
 }
 
-
-.form_data form .form_input input::placeholder{
+.form form .form input::placeholder{
   color: #8694a8;
   letter-spacing: .5px;
   font-size: 14px;
 }
 
-.form_input .showpass{
+.form .showpass{
   position: absolute;
   right: 0;
   top:1px;
@@ -115,7 +88,7 @@ section .form_data{
 
 form .btn{
   display:block;
-  width: 100%;
+  width: 90%;
   padding: 15px;
   border: none;
   outline: none;
@@ -129,17 +102,24 @@ form .btn{
   transition: all .3s;
 }
 
+.left {
+display: flex;
+flex-direction: column;
+width: 30vw;
+justify-content: center;
+align-items: center;
+}
 
 form .btn:hover{
   background-color: #97a1b1;
 }
 
-.form_data form p{
+.form form p{
   text-align: center;
   margin-top: 20px;
 }
 
-.form_data form a{
+.form form a{
   text-decoration: none;
   color:#718096 ;
   border-bottom: 2px solid #8694a8;
@@ -157,7 +137,7 @@ form .btn:hover{
 }
 
 .loginButton{
-  width: 500px;
+  width: 300px;
   padding: 15px 25px;
   border-radius: 5px;
   color: white;
@@ -167,3 +147,43 @@ form .btn:hover{
   margin-bottom: 20px;
   cursor: pointer;
 }
+.container {
+  display: "flex";
+  flex-direction: "row";
+  justify-content: "center";
+  align-items: "center";
+  padding-top: 50;
+}
+ 
+.preview {
+  margin-top: 50;
+  display: "flex";
+  flex-direction: "row";
+}
+
+form .img_input{
+  display:block;
+  width: 70%;
+  padding: 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color:#1a365d;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+
+.image { max-width:50px, ; max-height: 50px; border-radius: 50px };
+
+.delete {
+  cursor: "pointer";
+  padding: 15;
+  background: "rgb(30, 117, 146)";
+  color: "white";
+  border: "none";
+} 
