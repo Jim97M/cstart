@@ -1,4 +1,5 @@
 import "./navbar.scss";
+import { useContext, useState, useEffect } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
@@ -7,10 +8,26 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const [user, setUser] = useState('');
+
+  const getUser = async () => {
+    const user_id = JSON.parse(localStorage.getItem('userToken'));
+    console.log("Single User is", user_id);
+    const userId = user_id.id;
+    axios.get(`http://192.168.0.37:5000/api/v1/auth/user/${userId}`).then(
+      res => {
+        console.log(res.data)
+        setUser(res.data);
+      },
+    );
+  };
+
+  useEffect(() => {
+    getUser();
+  })
 
   return (
     <div className="navbar">
@@ -46,7 +63,7 @@ const Navbar = () => {
           </div>
           <div className="item">
             <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={`${user.image_name}`}
               alt=""
               className="avatar"
             />

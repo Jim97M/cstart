@@ -2,26 +2,36 @@
 .styleCardContent {
     width: 300px;
     height: 200px;
-    background-color: bisque;
-    color:darkcyan;
+    background-color: rgb(255, 252, 252);
+    color:rgb(0, 0, 0);
     box-sizing:border-box;
     padding: 40px;
     border-radius: 2px;
     font-family:'Courier New', Courier, monospace;
-    margin: 15px 15px
+    margin: 25px 45px;
+    display: flex;
+    flex-direction: column;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   }
 
   .styleCardTitle {
     font-family: Avenir-Heavy;
-    font-size: 20;
+    font-size: 22;
     font-weight: 600;
-    margin: 12px 0px 0px 0px;
+  
+    margin: 8px 40px;
+    margin-left: 70px;
   }
   
   .styleLocationLabel {
-    color: #8294aa;
-    font-size: 14;
+    color:rgb(0, 0, 0);
+    font-family: Avenir-Heavy;
+    font-size: 32;
+    font-weight: 600;
     margin: 4px 0;
+
+    margin-left: 70px;
   }
   
   .styleDescription {

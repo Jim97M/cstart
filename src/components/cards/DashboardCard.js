@@ -1,12 +1,11 @@
 import React from "react";
 import "./DashboardCard.scss";
 
-const DashboardCard =({title, location, description}) => {
+const DashboardCard =({title, stat}) => {
     return (
       <div className="styleCardContent">
         <p className="styleCardTitle">{title}</p>
-        <p className="styleLocationLabel">{location}</p>
-        <p className="styleDescription">{description}</p>
+        <p className="styleLocationLabel">{stat}</p>
       </div>
     );
   }

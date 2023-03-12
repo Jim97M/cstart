@@ -32,7 +32,7 @@ const App = () => {
 
   const DashboardValid = async (req, res) => {
     const token = localStorage.getItem("userToken");
-    console.log("Your token is", token);
+    // console.log("Your token is", token);
 
     const response = await fetch("http://localhost:5000/api/v1/auth/validuser", {
       method: "GET",
