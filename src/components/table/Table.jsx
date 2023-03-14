@@ -60,15 +60,15 @@ const List = () => {
   ];
   return (
     <TableContainer component={Paper} className="table">
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">Student ID</TableCell>
-            <TableCell className="tableCell">Student Profile </TableCell>
-            <TableCell className="tableCell">Student Name</TableCell>
-            <TableCell className="tableCell">Amount</TableCell>
-            <TableCell className="tableCell">Status</TableCell>
-            <TableCell className="tableCell">Actions</TableCell>
+            <TableCell className="tableCell" style={{fontSize: 16, fontWeight: 'bold'}}>Student ID</TableCell>
+            <TableCell className="tableCell" style={{fontSize: 16, fontWeight: 'bold'}}>Student Profile </TableCell>
+            <TableCell className="tableCell" style={{fontSize: 16, fontWeight: 'bold'}}>Student Name</TableCell>
+            <TableCell className="tableCell" style={{fontSize: 16, fontWeight: 'bold'}}>Amount</TableCell>
+            <TableCell className="tableCell" style={{fontSize: 16, fontWeight: 'bold'}}>Status</TableCell>
+            <TableCell className="tableCell" style={{fontSize: 16, fontWeight: 'bold'}}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -88,9 +88,9 @@ const List = () => {
               </TableCell>
 
               <TableCell className="tableCell">
-                <FiEye size={22} style={{marginLeft: 5}} />
-                <FiEdit size={22} style={{marginLeft: 5}} />
-                <FiTrash2 size={22} style={{marginLeft: 5}} />
+                <FiEye size={22} style={{marginLeft: 7}} color="lightgreen" />
+                <FiEdit size={22} style={{marginLeft: 7}} />
+                <FiTrash2 size={22} style={{marginLeft: 7}} color="red"/>
               </TableCell>
             </TableRow>
           ))}
