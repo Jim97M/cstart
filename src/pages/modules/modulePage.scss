@@ -4,4 +4,19 @@
     .listContainer {
       flex: 6;
     }
+    .heading {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .addbutton {
+      border:none;
+      width: 200px;
+      height: 60px;
+      background-color: gray;
+      border-radius: 10px;
+      align-items: center;
+      text-decoration: none;
+      justify-content: center;
+    }
 }

@@ -142,10 +142,14 @@ form .btn:hover{
     border-radius: 5px;
     color: white;
     display: flex;
+    margin-top: 30px;
     align-items: center;
     font-weight: bold;
     margin-bottom: 20px;
     cursor: pointer;
+  }
+  .social_container {
+    margin-top: 150px;
   }
   .container {
     display: "flex";
@@ -161,7 +165,8 @@ form .btn:hover{
     flex-direction: "row";
   }
 
-  form .img_input{
+  /* form  */
+  .img_input{
     display:block;
     width: 70%;
     padding: 15px;
@@ -169,16 +174,17 @@ form .btn:hover{
     outline: none;
     border-radius: 5px;
     background-color:#1a365d;
-    color: #fff;
+    color: #ffffff;
     font-weight: 600;
     font-size: 18px;
-    margin-top: 10px;
+    margin-top: 15px;
     cursor: pointer;
     transition: all .3s;
 }
 
 
-  .image { max-width:50px, ; max-height: 50px; border-radius: 50px };
+  .image { max-width:50px, ; max-height: 50px; border-radius: 50px;
+    background-color: #1a365d; };
   
   .delete {
     cursor: "pointer";

@@ -101,8 +101,7 @@ const SignUpPage = () => {
       formdata.append("phone_number", phone_number);
       formdata.append("password", password);
       formdata.append("confirm_password", confirm_password);
-      formdata.append("image", image_name);
-
+;
        await fetch("http://192.168.0.37:5000/api/v1/auth/signup", {
         method: "post",
         body: formdata
@@ -171,7 +170,7 @@ const SignUpPage = () => {
                 />
               </div>
               <div className="form_input">
-                <label htmlFor="email">Phone Number</label>
+                <label htmlFor="phone">Phone Number</label>
                 <PhoneInput
                   country={"us"}
                   value={phone_number}
@@ -180,7 +179,7 @@ const SignUpPage = () => {
                   inputStyle={{ width: "98%" }}
                 />
               </div>
-              <div className="container">
+              {/* <div className="container">
                 <input
                   accept="image/*"
                   type="file"
@@ -188,6 +187,7 @@ const SignUpPage = () => {
                   className="img_input"
                   placeholder="Select Image"
                   onChange={selectFile}
+                  hidden
                 />
 
                 {selectedImage && (
@@ -202,8 +202,8 @@ const SignUpPage = () => {
                     </button>
                   </div>
                 )}
-              </div>
-              <div className="form_input">
+              </div> */}
+              <div className="form_input" style={{marginTop: 13}}>
                 <label htmlFor="password">Password</label>
                 <div className="two">
                   <input
@@ -255,9 +255,9 @@ const SignUpPage = () => {
             className="left"
             style={{
               backgroundColor: "lightgray",
-              height: "84vh",
-              marginTop: -35,
-              marginBottom: -47,
+              height: "80vh",
+              marginTop: -36,
+              marginBottom: -49,
               marginRight: -10,
             }}
           >
@@ -267,7 +267,8 @@ const SignUpPage = () => {
               className="ic"
               style={{ width: "20vw", borderRadius: "50%" }}
             />
-            <div className="loginButton google" onClick={google}>
+            <div className="social_container">
+              <div className="loginButton google" onClick={google}>
               <img src={Google} alt="" className="icon" />
               Google
             </div>
@@ -275,6 +276,8 @@ const SignUpPage = () => {
               <img src={Facebook} alt="" className="icon" />
               Facebook
             </div>
+            </div>
+
           </div>
           <ToastContainer />
         </div>

@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    width: 100%;
+    .listContainer {
+      flex: 6;
+    }
+    .heading {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 2;
+    }
+    .input_wrapper {
+        margin-left: 20px;
+        height: 65vh;
+        width: 135vh;
+        flex-direction: column;
+        display: flex;
+        border: 1px solid rgb(39, 39, 39);
+        border-radius: 30px;
+        padding: 50px 100px;
+    }
+    .tutorial_name {
+     display: flex;
+     flex-direction: column;
+    }
+    .name_input {
+        width: 50vh;
+        height: 40px;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+    .top_content_wrapper {
+        display: flex;
+        flex-direction: row;
+        // justify-content: space-evenly;
+    }
+    .tutorial_description {
+        display: flex;
+        flex-direction: column;
+        margin-left: 300px;
+        border-radius: 10px;
+    }
+
+    .textarea {
+        margin-top: 30px;
+    }
+}

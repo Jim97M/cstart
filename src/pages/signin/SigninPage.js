@@ -3,31 +3,23 @@ import React, {
   useEffect,
   useRef,
   useContext,
-  createContext,
 } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "./SignIn.css";
+import useAuth from "../../hooks/useAuth";
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
 import Logo from "../../assets/logo.png";
-
-// const AuthContext = createContext({});
-
-// const AuthProvider = ({children}) => {
-//   const [auth, setAuth] = useState({});
-//   return (
-//     <AuthContext.Provider value={{auth, setAuth}}>
-//       {children}
-//     </AuthContext.Provider>
-//   )
-// }
+import AuthContext from "../../context/AuthProvider";
 
 const SigninPage = () => {
-  // const {setAuth} = useContext(AuthProvider);
+  const {setAuth} = useAuth();
+  
+  const userRef = useRef();
 
-  const history = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const [formValues, setFormValues] = useState(initialValues);
@@ -38,6 +30,8 @@ const SigninPage = () => {
   const [phone, setPhone] = useState("");
   const [cpassShow, setCPassShow] = useState(false);
 
+  const [errMsg, setErrMsg] = useState('');
+
   const from = location?.state?.from?.pathname || "/";
 
   const initialValues = { email: "", password: "" };
@@ -47,7 +41,15 @@ const SigninPage = () => {
     password: "",
   });
 
-  const userRef = useRef();
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [inpval.email, inpval.password])
+
+
 
   const setVal = (e) => {
     // console.log(e.target.value);
@@ -65,8 +67,8 @@ const SigninPage = () => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
 
-  const addUserdata = async (e) => {
-    e.preventDefault();
+  const addUserdata = async (event) => {
+    event.preventDefault();
 
     // const { email, password, confirm_password } = inpval;
 
@@ -95,11 +97,15 @@ const SigninPage = () => {
       .then((res) => {
         console.log(JSON.stringify(res.data));
         //console.log(JSON.stringify(response));
-
         if (res.status === 200) {
-          localStorage.setItem("userToken", JSON.stringify(res.data));
-          history("/home");
-          setInpval({ ...inpval, email: "", password: "" });
+            
+        const accessToken = res?.data?.accessToken;
+        const roles = res?.data?.roleId;
+        console.log(roles);
+        setAuth({ email, password, roles, accessToken });
+        console.log("Auth Context", setAuth)
+        setInpval({ ...inpval, email: "", password: "" });
+        navigate(from, { replace: true });
         } else {
           toast.error("Invalid Credentials", {
             position: "top-center",
@@ -107,6 +113,7 @@ const SigninPage = () => {
         }
       });
   };
+
   useEffect(() => {
     addUserdata();
   }, []);
@@ -119,11 +126,12 @@ const SigninPage = () => {
           <div className="form_heading">
             <h2>Login To Your Account</h2>
           </div>
-          <form>
+          <form onSubmit={addUserdata}>
             <div className="form_input" style={{ marginTop: "10px" }}>
               <label htmlFor="email">Email</label>
               <input
                 type="email"
+                ref={userRef}
                 onChange={setVal}
                 style={{ marginRight: 60 }}
                 value={inpval.email}
@@ -152,7 +160,7 @@ const SigninPage = () => {
               </div>
             </div>
             <p style={{color: "black", fontWeight: 'bold', marginLeft: '16vw'}}>Forgot Password? <NavLink to="/forgotpassword">Click Here</NavLink> </p> 
-            <button className="btn" onClick={addUserdata}>
+            <button className="btn">
               Sign In
             </button>
            

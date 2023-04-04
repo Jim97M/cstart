@@ -1,31 +1,34 @@
 
 .heading {
     font-size: 23px;
+    margin-top: 20px;
     margin-bottom: 20px;
     text-transform: uppercase;
   }
   
   .accordion {
+
+    margin-top: 20px;
     list-style: none;
   }
   
   .accordion_item {
-    border-top: 1px solid #353535;
+    border-top: 1px solid #d1cece;
     
     margin-left: -28px;
   }
   
   .button {
     font-size: 16px;
-    background-color: #414141;
-    color: #fff;
+    background-color: #bbb6b6;
+    color: #141414;
     text-align: left;
     font-weight: 700;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
-    justify-content: space-between;
-    align-items: center;
+    align-items:flex-end;
     padding: 18px 8px;
     cursor: pointer;
     border: none;
@@ -42,10 +45,47 @@
   
   /* activate toggle */
   .accordion_item.active .button {
-    background-color: #105057;
+    background-color: #a7c7ca;
   }
   .answer_wrapper {
     height: 0;
     overflow: hidden;
     transition: height ease 0.2s;
   }
+
+  .input_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top_content_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .tutorial_name {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+
+    margin-top: 10px;
+  }
+  .name_input {
+    width: 58vh;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+  .tutorial_description {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+
+    margin-top: 10px;
+  }
+
+  .textarea {
+    margin-top: 30px;
+}
