@@ -1,6 +1,7 @@
 import "./Accordion.scss";
 import { useRef } from "react";
 import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
 import {
   FiEdit, FiEye, FiTrash2, FiArrowRight
 } from "react-icons/fi"
@@ -26,7 +27,7 @@ Modal.setAppElement('#app');
 
 
 
-const AccordionItem = ({ tutorial_name, tutorial_description, name, active, onToggle }) => {
+const AccordionItem = ({ tutorial_name, tutorial_description, name, active, onToggle, id }) => {
   const contentEl = useRef();
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -142,7 +143,7 @@ const AccordionItem = ({ tutorial_name, tutorial_description, name, active, onTo
          </div> */}
          <div style={{display: 'flex', justifyContent: 'space-between', marginLeft: 40, marginRight: 40, marginTop: 30}}>
           <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
-               <button style={{backgroundColor: '#D1D100', border: 'none', width: 230, height: 65, fontSize: 23, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderRadius: 10, marginLeft: 8, marginRight: 5}}> <p style={{fontWeight: 'bold', marginLeft: 14}}>Enroll Now</p> <FiArrowRight size={29} style={{marginTop: 4}} /> </button>
+             <Link to={'/tutorial/' +  id}>  <button style={{backgroundColor: '#D1D100', border: 'none', width: 230, height: 65, fontSize: 23, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderRadius: 10, marginLeft: 8, marginRight: 5}}> <p style={{fontWeight: 'bold', marginLeft: 14}}>Enroll Now</p> <FiArrowRight size={29} style={{marginTop: 4}} /> </button> </Link>
           </div>
           <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
                <button style={{ backgroundColor: 'black', border: 'none', borderWidth: 2, width: 230, height: 65, fontSize: 23, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderRadius: 10, marginLeft: 8, marginRight: 5}}> <p style={{fontWeight: 'bold', color: 'white', marginLeft: 14}}>Download Now</p> <FiArrowRight size={29} style={{marginTop: 4}} /> </button>

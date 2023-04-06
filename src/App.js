@@ -17,7 +17,7 @@ import ForgotPassword from './pages/forgotpassword/forgotPassword';
 import AddTutorial from './components/addtutorial/AddTutorial';
 import RequiredAuth from './pages/authorization_pages/RequiredAuth';
 import UnauthorizedPage from './pages/authorization_pages/UnauthorizedPage';
-
+import TutorialDetailsPage from './components/tutorialdetails/TutorialDetailsPage';
 const ROLES = {
  'Admin': 1,
  'Faculty': 2,
@@ -74,6 +74,7 @@ const App = () => {
      <Route path="/modules" element={<ModulePage />}  />
      <Route path="addtutorial" element={<AddTutorial />}/>
     <Route path="/unauthorized" element={<UnauthorizedPage />} />
+    <Route path="/tutorial/:id" element={<TutorialDetailsPage />} />
      <Route path="/home" element={<Home />} />
        {/* we want to protect these routes */}
        <Route element={<RequiredAuth allowedRoles={[ROLES.Faculty]} />}>

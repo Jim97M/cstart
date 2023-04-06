@@ -36,6 +36,7 @@ const Accordion = () => {
           tutorial_name={item.tutorial_name}
           tutorial_description={item.tutorial_description}
           name={item.name}
+          id={item.id}
         />
       ))}
     </ul>

@@ -11,11 +11,13 @@ const appElement = document.getElementById("app");
 
 ReactDOM.render(
     <Router>
+
+<Provider store={store}>
         <AuthProvider>
-         <Provider>
         <App />
-         </Provider>
         </AuthProvider>
+
+        </Provider>
     </Router>    
     ,
 appElement);

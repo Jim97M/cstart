@@ -5,15 +5,29 @@ import {detailedTutorial} from '../../states/actions/tutorialActions';
 
 
 const TutorialDetailsPage = () => {
-    const tutorialDetails = useSelector(state => state.tutorial);
-    const { loading, error, tutorial } = tutorialDetails;
-  console.log(tutorial);
-  
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error...</div>;
+    const tutorialDetails  = useSelector((state) => state.tutorialDetails);
+   const { loading, error, tutorial } =  tutorialDetails;
+  console.log("Tutorial Details Is",  tutorialDetails);
+ 
+  // const {loading, error, tutorial} = detailedTutorial();
  
   return (
-    <div>TutorialDetailsPage</div>
+    <div>
+      <div>
+        <Link to="/moduleshomepage">Back to Homepage</Link>
+      </div>
+      {loading ? (
+        <div> Loading...</div>
+      ) : error ? (
+        <div>{error}</div>
+      ) :  ( 
+      <div>
+        <h2>{tutorial.tutorial_name} </h2>
+        <p>{tutorial.tutorial_description} </p>
+        <p> {tutorial.tutorial_duration} </p>
+      </div>
+      )}
+    </div>
   )
 }
 

@@ -4,18 +4,18 @@ import {
      TUTORIAL_REVIEW_FAIL,
 } from '../constants/tutorialConstants';
 
-const tutorialDetailssReducer = (state = {tutorial: {}}, action) => {
-  switch(action.type){
+export const tutorialDetailssReducer = (state = [], action) => {
+    const {type, payload} = action;
+  switch(type){
       case TUTORIAL_REVIEW_LOADING:
           return { loading: true };
       case TUTORIAL_REVIEW_SUCCESS:
-          return { loading: false, tutorial: action.payload };
+          return { loading: false, tutorial: payload };
       case TUTORIAL_REVIEW_FAIL:
-          return { loading: false, error: action.payload };
+          return { loading: false, error: payload };
       default:
           return state;
   
   }
 }
 
-export {tutorialDetailssReducer};
